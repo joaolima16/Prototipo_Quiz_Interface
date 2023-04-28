@@ -124,6 +124,9 @@ public class MenuForm extends javax.swing.JFrame {
     }
     private void jBtnOptionFourActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnOptionFourActionPerformed
         // TODO add your handling code here:
+        CreditsForm creditsForm = new CreditsForm();
+        creditsForm.setVisible(true);
+        MenuForm.this.dispose();
     }//GEN-LAST:event_jBtnOptionFourActionPerformed
 
     private void jBtnOptionFiveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnOptionFiveActionPerformed
