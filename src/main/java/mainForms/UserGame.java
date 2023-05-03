@@ -4,7 +4,7 @@
  */
 package mainForms;
 import Questions.QuestionOneForm;
-import Connection.ConnectionDB;
+import TimerGame.TimerGame;
 import DAO.GameDAO;
 import javax.swing.JOptionPane;
 import Model.User;
@@ -90,16 +90,19 @@ public class UserGame extends javax.swing.JFrame {
     public void CentralizarForm() {
     this.setLocationRelativeTo(null);
     }
+   
     private void btnInitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInitActionPerformed
         // TODO add your handling code here:
         QuestionOneForm formQuestion = new QuestionOneForm();
         GameDAO conn = new GameDAO();
+        TimerGame timer = new TimerGame();
         boolean userExists = conn.InsertUser(txbUser.getText());
-      
+        
         if(userExists == false) {
               formQuestion.setVisible(true);
               UserGame.this.dispose();
-              User.setUsername(txbUser.getText()); 
+             // User.setUsername(txbUser.getText());
+              timer.start();
       }
       else{
               JOptionPane.showMessageDialog(null, "Usuário já existe, por favor insira outro "); 

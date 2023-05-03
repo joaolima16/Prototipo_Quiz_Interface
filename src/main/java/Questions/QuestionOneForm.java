@@ -7,10 +7,10 @@ package Questions;
 import java.awt.Color;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
-import Connection.ConnectionDB;
 import DAO.GameDAO;
 import Model.User;
 import java.util.Collections;
+
 /**
  *
  * @author João Vitor
@@ -137,7 +137,7 @@ public final class QuestionOneForm extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
     private void GenerateResponses(){
-     
+           
            ArrayList<String> arrResponses = new ArrayList<String>();
            arrResponses.add("Banana");
            arrResponses.add("Maca");
@@ -161,7 +161,7 @@ public final class QuestionOneForm extends javax.swing.JFrame {
            Questions question = new Questions(correctResponse,response);
             if(question.verifyResponse().equals("correta")) {     
                 JOptionPane.showMessageDialog(null, "Resposta correta! ");     
-                game.updatePoints(User.getUsername());
+                
                 
         }
         else{
@@ -222,7 +222,7 @@ public final class QuestionOneForm extends javax.swing.JFrame {
 
     private void BtnResponse3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnResponse3ActionPerformed
         // TODO add your handling code here:
-        VerifyResponses(jButton3.getText());        
+        VerifyResponses(BtnResponse3.getText());        
         
         
     }//GEN-LAST:event_BtnResponse3ActionPerformed

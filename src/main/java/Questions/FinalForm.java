@@ -17,7 +17,7 @@ public class FinalForm extends javax.swing.JFrame {
     }
     
     public void FinalResponse(){
-            txtCongratulations.setText("Parábens usuário: " + User.getUsername() +" Você fez: " + User.getPoints() + " Pontos");
+           // txtCongratulations.setText("Parábens usuário: " + User.getUsername() +" Você fez: " + User.getPoints() + " Pontos");
         }
     
     @SuppressWarnings("unchecked")
@@ -103,8 +103,6 @@ public class FinalForm extends javax.swing.JFrame {
         MenuForm formMenu = new MenuForm();
         FinalForm.this.dispose();
         formMenu.setVisible(true);
-        
-        
     }//GEN-LAST:event_jBtnNewGameActionPerformed
 
     private void jBtnExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnExitActionPerformed

@@ -79,13 +79,13 @@ public class GameDAO {
           ResultSet rs = stmtSelect.executeQuery();
           
           while(rs.next()){
-                User.setId(rs.getInt(1));
-                User.setUsername(rs.getString(2));
-                User.setPoints(rs.getInt(3));
+               // User.setId(rs.getInt(1));
+                //User.setUsername(rs.getString(2));
+                //User.setPoints(rs.getInt(3));
           }
           
-          stmtUpdate.setInt(1, User.getPoints());
-          stmtUpdate.setString(2, User.getUsername());
+         // stmtUpdate.setInt(1, User.getPoints());
+         // stmtUpdate.setString(2, User.getUsername());
           stmtUpdate.executeUpdate();
           
         }
