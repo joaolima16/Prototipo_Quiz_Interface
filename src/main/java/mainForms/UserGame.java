@@ -3,9 +3,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package mainForms;
-import Questions.QuestionOneForm;
+import Questions.QuestionsForm;
 import TimerGame.TimerGame;
-import DAO.GameDAO;
+import DAO.UserDAO;
 import javax.swing.JOptionPane;
 import Model.User;
 /**
@@ -93,15 +93,17 @@ public class UserGame extends javax.swing.JFrame {
    
     private void btnInitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInitActionPerformed
         // TODO add your handling code here:
-        QuestionOneForm formQuestion = new QuestionOneForm();
-        GameDAO conn = new GameDAO();
+     
+        UserDAO conn = new UserDAO();
         TimerGame timer = new TimerGame();
         boolean userExists = conn.InsertUser(txbUser.getText());
         
         if(userExists == false) {
+              QuestionsForm formQuestion = new QuestionsForm(txbUser.getText());
+           
               formQuestion.setVisible(true);
               UserGame.this.dispose();
-             // User.setUsername(txbUser.getText());
+              
               timer.start();
       }
       else{

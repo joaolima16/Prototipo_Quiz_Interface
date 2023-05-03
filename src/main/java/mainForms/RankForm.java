@@ -4,7 +4,7 @@
  */
 package mainForms;
 
-import DAO.GameDAO;
+import DAO.UserDAO;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;

@@ -4,7 +4,8 @@
  */
 package Questions;
 
-import DAO.GameDAO;
+import Model.Questions;
+import DAO.UserDAO;
 import Model.User;
 import java.awt.Color;
 import java.util.ArrayList;
@@ -44,7 +45,7 @@ public final class QuestionTwoForm extends javax.swing.JFrame {
            }
           
     private void VerifyResponses(String response) {
-        GameDAO game = new GameDAO();
+        UserDAO game = new UserDAO();
         final String correctResponse = "Rússia";
         int confirmation = JOptionPane.showConfirmDialog(null, "Você confirma a alternativa escolhida? ");
 
@@ -53,7 +54,7 @@ public final class QuestionTwoForm extends javax.swing.JFrame {
                 Questions question = new Questions(correctResponse, response);
                 if (question.verifyResponse().equals("correta")) {
                     JOptionPane.showMessageDialog(null, "Resposta correta! ");
-                    game.updatePoints(User.getUsername());
+                    // game.updatePoints(User.getUsername());
 
                 } else {
 

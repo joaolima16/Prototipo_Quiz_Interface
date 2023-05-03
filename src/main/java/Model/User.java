@@ -8,17 +8,11 @@ package Model;
  *
  * @author João Vitor
  */
-public class User {
+public final class User {
     private String username;
     private int Id;
     private int points;
     
-    public User(String username, int id, int points ){
-    setUsername(username);
-    setId(id);
-    setPoints(points);
-    
-    }
     public  int getId() {
         return Id;
     }
@@ -27,7 +21,7 @@ public class User {
         this.Id = Id;
     }
     public void setUsername(String username) {
-        this.username = username;
+         this.username = username;
     }
 
     public int getPoints() {
