@@ -14,6 +14,12 @@ import DAO.QuestionDAO;
 import java.util.Collections;
 import Model.ActionsForms;
 import java.awt.HeadlessException;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -31,7 +37,7 @@ public final class QuestionsForm extends javax.swing.JFrame {
         return this.user;
     }
 
-    public QuestionsForm(String user) {
+    public QuestionsForm(String user) throws SQLException {
 
         initComponents();
         CentralizarForm();
@@ -146,9 +152,14 @@ public final class QuestionsForm extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-    private void GenerateResponses() {
+    private void GenerateResponses() throws SQLException {
+        
         QuestionDAO question = new QuestionDAO();
-        question.SelectQuestions();
+         ArrayList rs = question.SelectQuestions();
+         rs.forEach(e ->System.out.println(e));
+      
+        
+       
         ArrayList<String> arrResponses = new ArrayList<String>();
         arrResponses.add("Banana");
         arrResponses.add("Maca");
@@ -166,13 +177,13 @@ public final class QuestionsForm extends javax.swing.JFrame {
         
         int confirmation = JOptionPane.showConfirmDialog(null, "Você confirma a alternativa escolhida? ");
         String[] otherResponses = {"Banana", "Maça", "teste"};
-        Questions question = new Questions("Qual a fruta?", 
-        correctResponse, otherResponses, response);
+        //Questions question = new Questions("Qual a fruta?", 
+        // correctResponse, otherResponses, response);
         
-        boolean correctQuestion = question.verifyResponse();
+        // boolean correctQuestion = question.verifyResponse();
         if (confirmation == 0) {
-            try {
-
+            /*try {
+                    
                 if (correctQuestion == true) {
                     JOptionPane.showMessageDialog(null, "Resposta correta! ");
                     game.updatePoints(getUser());
@@ -202,7 +213,7 @@ public final class QuestionsForm extends javax.swing.JFrame {
             } catch (HeadlessException ex) {
                 System.out.println(ex.getMessage());
                 System.exit(1);
-            }
+            }*/
         }
 
     }
@@ -262,7 +273,11 @@ public final class QuestionsForm extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
 
             public void run() {
-                new QuestionsForm("teste").setVisible(true);
+                try {
+                    new QuestionsForm("teste").setVisible(true);
+                } catch (SQLException ex) {
+                    Logger.getLogger(QuestionsForm.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }

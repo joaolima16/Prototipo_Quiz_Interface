@@ -4,6 +4,8 @@
  */
 package Model;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author João Vitor
@@ -12,12 +14,13 @@ public final class Questions {
 
     private String question;
     private String correctResponse;
-    private String[] responses;
+    private ArrayList<String> responses;
     private String responseUser;
 
-    public Questions(String question, String correctResponse, String[] responses, String responseUser) {
+    public Questions(String question, String correctResponse, ArrayList Responses) {
+        responses = new ArrayList();
         setCorrectResponse(correctResponse);
-        setOtherResponses(responses);
+        setOtherResponses(Responses);
         setQuestion(question);
         setResponseUser(responseUser);
     }
@@ -38,8 +41,8 @@ public final class Questions {
         return correctResponse;
     }
 
-    public void setOtherResponses(String[] responses) {
-        this.responses = responses;
+    public void setOtherResponses(ArrayList response){   
+        response.forEach(e -> this.responses.add((String) e));
 
     }
 
@@ -51,12 +54,12 @@ public final class Questions {
         this.question = question;
     }
 
-    public void getResponse() {
-        for (String i : this.responses) {
-            System.out.println(i);
-        }
+    //public void getResponse() {
+       // for (String i : this.responses) {
+           // System.out.println(i);
+      //  }//
 
-    }
+    //}
 
     public boolean verifyResponse() {
        if(correctResponse.equalsIgnoreCase(getResponseUser())){
