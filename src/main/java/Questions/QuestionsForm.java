@@ -42,12 +42,18 @@ public final class QuestionsForm extends javax.swing.JFrame {
         initComponents();
         CentralizarForm();
         setUser(user);
-        GenerateResponses();
+        //GenerateResponses();
 
     }
 
-    public void CentralizarForm() {
+    public void CentralizarForm() throws SQLException {
         this.setLocationRelativeTo(null);
+        try{
+            GenerateResponses();
+        }
+        catch(SQLException ex){
+            System.out.println(ex.getMessage());
+        }
     }
 
     @SuppressWarnings("unchecked")
@@ -156,8 +162,9 @@ public final class QuestionsForm extends javax.swing.JFrame {
         
         QuestionDAO question = new QuestionDAO();
          ArrayList rs = question.SelectQuestions();
-         rs.forEach(e ->System.out.println(e));
-      
+         rs.forEach(e ->System.out.println(e.toString()));
+         System.out.println("passei aqui");
+         
         
        
         ArrayList<String> arrResponses = new ArrayList<String>();
@@ -178,8 +185,8 @@ public final class QuestionsForm extends javax.swing.JFrame {
         int confirmation = JOptionPane.showConfirmDialog(null, "Você confirma a alternativa escolhida? ");
         String[] otherResponses = {"Banana", "Maça", "teste"};
         //Questions question = new Questions("Qual a fruta?", 
-        // correctResponse, otherResponses, response);
-        
+        // correctResponse, otherResponses, response);\
+       
         // boolean correctQuestion = question.verifyResponse();
         if (confirmation == 0) {
             /*try {
@@ -272,6 +279,7 @@ public final class QuestionsForm extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
 
+            @Override
             public void run() {
                 try {
                     new QuestionsForm("teste").setVisible(true);
