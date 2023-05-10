@@ -8,50 +8,40 @@ package Questions;
  *
  * @author João Vitor
  */
-import java.util.ArrayList;
-import java.util.List;
 
 
 public final class Questions  {
-	private String correctQuestion;
-	private List<String> otherQuestions;
+	private String correctResponse;
 	private String response;
 	 
-	 public Questions(String correctQuestion, List<String> otherQuestions) {
-	    setCorrectQuestion(correctQuestion);
-	    setOtherQuestions(otherQuestions);
+	 public Questions(String correctResponse, String response) {
+	    setCorrectResponse(correctResponse);
+	    setOtherResponses(response);
 	  }
-	  public String setCorrectQuestion(String question){
-	    return this.correctQuestion = question;
-	  }
-	  
-	  public String getCorrectQuestion() {
-	    return correctQuestion;
+	  public void setCorrectResponse(String response){
+	     this.correctResponse = response;
 	  }
 	  
-	  public void setOtherQuestions(List<String> otherQuestions){
-		  this.otherQuestions = new ArrayList<String>();
-		  for(String i: otherQuestions) {
-			    this.otherQuestions.add(i);
-			  }  
+	  public String getCorrectResponse() {
+	    return correctResponse;
 	  }
 	  
-	  public void getOtherQuestions() {
-		  for(String i: this.otherQuestions) {
-			    System.out.println(i);
-			  }  
+	  public void setOtherResponses(String response){
+		  this.response = response;
+		
+	  }
+	  
+	  public String getResponse() {
+		 return response; 
 	  }
 	  public String verifyResponse() {
-		  for(String i: this.otherQuestions) {
-			  if(correctQuestion.equalsIgnoreCase(i)) {
-				 return response = "correta";
+			  if(correctResponse.equalsIgnoreCase(getResponse())) {
+				 return "correta";
 			  }
 			  else {
-				  response = "incorreta";
-			  }
+				return "incorreta";
+			  }	  
 		
-		  }
-		  return response;
 	  }
 	  
 	  
