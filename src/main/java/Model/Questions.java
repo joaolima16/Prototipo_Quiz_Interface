@@ -14,11 +14,10 @@ public final class Questions {
 
     private String question;
     private String correctResponse;
-    private ArrayList<String> responses;
+    private String responses[];
     private String responseUser;
 
-    public Questions(String question, String correctResponse, ArrayList Responses) {
-        responses = new ArrayList();
+    public Questions(String question, String correctResponse, String Responses[]) {
         setCorrectResponse(correctResponse);
         setOtherResponses(Responses);
         setQuestion(question);
@@ -41,8 +40,8 @@ public final class Questions {
         return correctResponse;
     }
 
-    public void setOtherResponses(ArrayList response){   
-        response.forEach(e -> this.responses.add((String) e));
+    public void setOtherResponses(String response[]){   
+        this.responses = response;
 
     }
 
@@ -54,12 +53,12 @@ public final class Questions {
         this.question = question;
     }
 
-    //public void getResponse() {
-       // for (String i : this.responses) {
-           // System.out.println(i);
-      //  }//
+    public void getResponse() {
+        for (String i : this.responses) {
+            System.out.println(i);
+        }
 
-    //}
+    }
 
     public boolean verifyResponse() {
        if(correctResponse.equalsIgnoreCase(getResponseUser())){

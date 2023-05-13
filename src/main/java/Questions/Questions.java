@@ -12,9 +12,9 @@ package Questions;
 
 public final class Questions  {
 	private String correctResponse;
-	private String response;
+	private String response[];
 	 
-	 public Questions(String correctResponse, String response) {
+	 public Questions(String correctResponse, String  response[]) {
 	    setCorrectResponse(correctResponse);
 	    setOtherResponses(response);
 	  }
@@ -26,21 +26,20 @@ public final class Questions  {
 	    return correctResponse;
 	  }
 	  
-	  public void setOtherResponses(String response){
-		  this.response = response;
-		
+	  public void setOtherResponses(String response[]){
+		 this.response = response;
 	  }
 	  
-	  public String getResponse() {
+	  public String[] getResponse() {
 		 return response; 
 	  }
 	  public String verifyResponse() {
-			  if(correctResponse.equalsIgnoreCase(getResponse())) {
-				 return "correta";
-			  }
+			  if(!correctResponse.equalsIgnoreCase(getResponse())) {
+                              return "incorreta";
+                          }
 			  else {
-				return "incorreta";
-			  }	  
+                              return "correta";
+                          }	  
 		
 	  }
 	  

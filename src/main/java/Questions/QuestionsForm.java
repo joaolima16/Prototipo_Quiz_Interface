@@ -161,11 +161,8 @@ public final class QuestionsForm extends javax.swing.JFrame {
     private void GenerateResponses() throws SQLException {
         
         QuestionDAO question = new QuestionDAO();
-         ArrayList rs = question.SelectQuestions();
-         rs.forEach(e ->System.out.println(e.toString()));
-         System.out.println("passei aqui");
-         
-        
+         ArrayList rs = question.SelectQuestions();  
+         rs.forEach(e -> System.out.println(e));
        
         ArrayList<String> arrResponses = new ArrayList<String>();
         arrResponses.add("Banana");

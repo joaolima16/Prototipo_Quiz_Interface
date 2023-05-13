@@ -11,6 +11,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import Model.Questions;
 import java.util.ArrayList;
+import java.util.Arrays;
 import org.json.JSONObject;
 
 
@@ -18,6 +19,7 @@ public class QuestionDAO {
 
     public ArrayList<Questions> SelectQuestions() {
         ResultSet rs = null;
+        String data_split[] = null;
         ArrayList<Questions> lstQuestions = new ArrayList();
         JSONObject jsonObject = new JSONObject();
         ArrayList arrResponses = new ArrayList();  
@@ -27,19 +29,14 @@ public class QuestionDAO {
             rs = statment.executeQuery();
             int cont =0;
             while (rs.next()) {                
-                jsonObject.put("respostas",rs.getString(3));
-                arrResponses.add(rs.getString(2));
-                if(cont %3 ==0){
-                    lstQuestions.add(new Questions(rs.getString(1), rs.getString(2), arrResponses));
-                    arrResponses.clear();
-                }
-                 cont++;
+                String data = rs.getString(3);
+                data_split = data.split(",");
+                lstQuestions.add(new Questions(rs.getString(1),rs.getString(2), data_split));
             }
-              String teste = jsonObject.toString();
-              System.out.println(teste);
-        } catch (SQLException ex) {
+       } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
         return lstQuestions;
     }
+    
 }
