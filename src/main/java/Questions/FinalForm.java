@@ -1,5 +1,6 @@
 
 package Questions;
+import DAO.UserDAO;
 import Model.User;
 import mainForms.MenuForm;
 /**
@@ -10,13 +11,19 @@ public class FinalForm extends javax.swing.JFrame {
 
     /**
      * Creates new form FinalForm
+     * @param user
      */
-    public FinalForm() {
+    public FinalForm(String user) {
+        UserDAO userDao = new UserDAO();     
+        User userGame = userDao.GetPoints(user);
+        System.out.println(user);
         initComponents();
-    
+        
     }
     
     public void FinalResponse(){
+            
+            
            // txtCongratulations.setText("Parábens usuário: " + User.getUsername() +" Você fez: " + User.getPoints() + " Pontos");
         }
     

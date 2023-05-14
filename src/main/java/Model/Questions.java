@@ -23,7 +23,6 @@ public final class Questions {
         setQuestion(question);
         setResponseUser(responseUser);
     }
-
     public String getResponseUser() {
         return responseUser;
     }
@@ -53,18 +52,14 @@ public final class Questions {
         this.question = question;
     }
 
-    public void getResponse() {
-        for (String i : this.responses) {
-            System.out.println(i);
-        }
-
+    public String[] getResponse() {
+       System.out.println(responses[0]);
+       return responses;
     }
 
-    public boolean verifyResponse() {
-       if(correctResponse.equalsIgnoreCase(getResponseUser())){
-           return true;
-       }
-        return false;
+    public boolean verifyResponse(String response, String correctResponse) {
+        System.out.println(response);
+        return correctResponse.equalsIgnoreCase(response);
     }
 
 }

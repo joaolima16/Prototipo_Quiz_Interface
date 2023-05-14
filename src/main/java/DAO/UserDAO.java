@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package DAO;
 
 import java.sql.PreparedStatement;
@@ -11,10 +7,6 @@ import Model.User;
 import java.sql.Connection;
 import java.sql.DriverManager;
 
-/**
- *
- * @author João Vitor
- */
 public class UserDAO {
 
     public boolean InsertUser(String name) {
@@ -103,5 +95,26 @@ public class UserDAO {
 
         }
         return rs = null;
+    }
+
+    public User GetPoints(String user) {
+        User userGame = new User();
+        try (Connection conn = DriverManager.getConnection("jdbc:sqlite:quiz.db")) {
+           
+            String sql = "SELECT name, points FROM game WHERE name =?";
+            PreparedStatement stmt = conn.prepareStatement(sql);
+            stmt.setString(1, user);
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()) {
+                System.out.println(rs.getInt(1));
+
+                userGame.setUsername(user);
+                userGame.setPoints(rs.getInt(1));
+            }
+
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        return userGame;
     }
 }

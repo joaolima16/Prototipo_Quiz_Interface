@@ -5,30 +5,46 @@
 package Questions;
 
 import Model.Questions;
-import java.awt.Color;
 import java.util.ArrayList;
-import javax.swing.JOptionPane;
 import DAO.UserDAO;
-import Model.User;
 import DAO.QuestionDAO;
 import java.util.Collections;
-import Model.ActionsForms;
+import java.awt.Color;
 import java.awt.HeadlessException;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author João Vitor
  */
 public final class QuestionsForm extends javax.swing.JFrame {
-
+    
+    
     private String user;
+    private Integer IndexQuestions = 0;
+    ArrayList<Questions> lsQuestions;
+    
+    
+    public void setIndexQuestions() {
+        if(this.IndexQuestions != lsQuestions.size() -1  ){
+            this.IndexQuestions = this.IndexQuestions + 1;
+        }    
+        else{
+            int confirmation = JOptionPane.showConfirmDialog(null, "Deseja encerrar o quiz? ");
+            if(confirmation == 0){
+                SetFinalForm();
+            }
+        }
+    }
 
+    public Integer getIndex() {
+ 
+        return IndexQuestions;
+    }
+    
     public void setUser(String user) {
         this.user = user;
     }
@@ -37,30 +53,24 @@ public final class QuestionsForm extends javax.swing.JFrame {
         return this.user;
     }
 
-    public QuestionsForm(String user) throws SQLException {
+    public QuestionsForm(String user) throws SQLException {          
 
         initComponents();
         CentralizarForm();
         setUser(user);
-        //GenerateResponses();
+        GenerateResponses();
 
     }
 
     public void CentralizarForm() throws SQLException {
         this.setLocationRelativeTo(null);
-        try{
-            GenerateResponses();
-        }
-        catch(SQLException ex){
-            System.out.println(ex.getMessage());
-        }
     }
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
+        JlabelQuestion = new javax.swing.JLabel();
         BtnResponse1 = new javax.swing.JButton();
         BtnResponse2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
@@ -70,8 +80,8 @@ public final class QuestionsForm extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
 
-        jLabel1.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
-        jLabel1.setText("Questão 1 - Qual a fruta correta?");
+        JlabelQuestion.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
+        JlabelQuestion.setText("Questão 1 - Qual a fruta correta?");
 
         BtnResponse1.setFont(new java.awt.Font("Comic Sans MS", 1, 20)); // NOI18N
         BtnResponse1.setText("Maça");
@@ -130,7 +140,7 @@ public final class QuestionsForm extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(BtnResponse3, javax.swing.GroupLayout.PREFERRED_SIZE, 267, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(BtnResponse2, javax.swing.GroupLayout.PREFERRED_SIZE, 267, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel1)
+                            .addComponent(JlabelQuestion)
                             .addComponent(BtnResponse1, javax.swing.GroupLayout.PREFERRED_SIZE, 267, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(84, 84, 84))))
             .addGroup(layout.createSequentialGroup()
@@ -144,7 +154,7 @@ public final class QuestionsForm extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
-                .addComponent(jLabel1)
+                .addComponent(JlabelQuestion)
                 .addGap(31, 31, 31)
                 .addComponent(BtnResponse1)
                 .addGap(36, 36, 36)
@@ -159,34 +169,23 @@ public final class QuestionsForm extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
     private void GenerateResponses() throws SQLException {
-        
         QuestionDAO question = new QuestionDAO();
-         ArrayList rs = question.SelectQuestions();  
-         rs.forEach(e -> System.out.println(e));
-       
-        ArrayList<String> arrResponses = new ArrayList<String>();
-        arrResponses.add("Banana");
-        arrResponses.add("Maca");
-        arrResponses.add("Teste");
-
-        Collections.shuffle(arrResponses);
-        BtnResponse1.setText(arrResponses.get(0));
-        BtnResponse2.setText(arrResponses.get(1));
-        BtnResponse3.setText(arrResponses.get(2));
+        lsQuestions = question.SelectQuestions();  
+        JlabelQuestion.setText(lsQuestions.get(getIndex()).getQuestion());
+        BtnResponse1.setText(lsQuestions.get(getIndex()).getResponse()[0]);
+        BtnResponse2.setText(lsQuestions.get(getIndex()).getResponse()[1]);
+        BtnResponse3.setText(lsQuestions.get(getIndex()).getResponse()[2]);
+        
     }
 
     private void VerifyResponses(String response) {
-        UserDAO game = new UserDAO();
-        final String correctResponse = "Banana";
+         UserDAO game = new UserDAO();
+         int confirmation = JOptionPane.showConfirmDialog(null, "Você confirma a alternativa escolhida? ");
+         boolean correctQuestion = lsQuestions.get(0).verifyResponse(response,lsQuestions.get(getIndex()).getCorrectResponse());
+  
         
-        int confirmation = JOptionPane.showConfirmDialog(null, "Você confirma a alternativa escolhida? ");
-        String[] otherResponses = {"Banana", "Maça", "teste"};
-        //Questions question = new Questions("Qual a fruta?", 
-        // correctResponse, otherResponses, response);\
-       
-        // boolean correctQuestion = question.verifyResponse();
         if (confirmation == 0) {
-            /*try {
+            try {
                     
                 if (correctQuestion == true) {
                     JOptionPane.showMessageDialog(null, "Resposta correta! ");
@@ -196,19 +195,19 @@ public final class QuestionsForm extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(null, "Resposta incorreta! ");
 
                 }
-                if (BtnResponse1.getText().equals(correctResponse)) {
+                if (BtnResponse1.getText().equalsIgnoreCase(lsQuestions.get(getIndex()).getCorrectResponse())) {
                     BtnResponse1.setBackground(Color.GREEN);
                     BtnResponse2.setBackground(Color.red);
                     BtnResponse3.setBackground(Color.red);
 
                 }
-                if (BtnResponse2.getText().equals(correctResponse)) {
+                if (BtnResponse2.getText().equalsIgnoreCase(lsQuestions.get(getIndex()).getCorrectResponse())) {
                     BtnResponse2.setBackground(Color.GREEN);
                     BtnResponse1.setBackground(Color.red);
                     BtnResponse3.setBackground(Color.red);
 
                 }
-                if (BtnResponse3.getText().equals(correctResponse)) {
+                if (BtnResponse3.getText().equalsIgnoreCase(lsQuestions.get(getIndex()).getCorrectResponse())) {
                     BtnResponse3.setBackground(Color.GREEN);
                     BtnResponse1.setBackground(Color.red);
                     BtnResponse2.setBackground(Color.red);
@@ -217,7 +216,7 @@ public final class QuestionsForm extends javax.swing.JFrame {
             } catch (HeadlessException ex) {
                 System.out.println(ex.getMessage());
                 System.exit(1);
-            }*/
+            }
         }
 
     }
@@ -228,54 +227,41 @@ public final class QuestionsForm extends javax.swing.JFrame {
     }//GEN-LAST:event_BtnResponse1ActionPerformed
 
     private void BtnResponse2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnResponse2ActionPerformed
-        // TODO add your handling code here:
-        VerifyResponses(BtnResponse2.getText());
+            VerifyResponses(BtnResponse2.getText());
 
     }//GEN-LAST:event_BtnResponse2ActionPerformed
-
+    private void SetFinalForm(){
+     FinalForm finalForm = new FinalForm(getUser());
+     finalForm.setVisible(true);
+    }
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        FinalForm form = new FinalForm();
-        ActionsForms actionForm = new ActionsForms();
+        NextQuestions();
 
     }//GEN-LAST:event_jButton3ActionPerformed
-
+        
     private void BtnResponse3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnResponse3ActionPerformed
         VerifyResponses(BtnResponse3.getText());
-
-
     }//GEN-LAST:event_BtnResponse3ActionPerformed
-
+    private void NextQuestions(){
+        setIndexQuestions();
+        System.out.println(getIndex());
+        
+        BtnResponse1.setBackground(Color.WHITE);
+        BtnResponse2.setBackground(Color.WHITE);
+        BtnResponse3.setBackground(Color.WHITE);
+        
+        try {
+            
+            GenerateResponses();
+        } catch (SQLException ex) {
+            Logger.getLogger(QuestionsForm.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
     /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(QuestionsForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(QuestionsForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(QuestionsForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(QuestionsForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
-
             @Override
             public void run() {
                 try {
@@ -291,8 +277,8 @@ public final class QuestionsForm extends javax.swing.JFrame {
     private javax.swing.JButton BtnResponse1;
     private javax.swing.JButton BtnResponse2;
     private javax.swing.JButton BtnResponse3;
+    private javax.swing.JLabel JlabelQuestion;
     private javax.swing.JButton jButton3;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }

@@ -11,28 +11,25 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import Model.Questions;
 import java.util.ArrayList;
-import java.util.Arrays;
-import org.json.JSONObject;
 
 
 public class QuestionDAO {
 
     public ArrayList<Questions> SelectQuestions() {
-        ResultSet rs = null;
-        String data_split[] = null;
+        ResultSet rs;
+        String data_split[];
         ArrayList<Questions> lstQuestions = new ArrayList();
-        JSONObject jsonObject = new JSONObject();
-        ArrayList arrResponses = new ArrayList();  
+        
         try (Connection conn = DriverManager.getConnection("jdbc:sqlite:quiz.db")) {
-            String sql = "SELECT question,correctResponse,response,teste FROM response r LEFT JOIN questions q ON q.id = r.id_question";
+            String sql = "SELECT question,correctResponse,response FROM response r LEFT JOIN questions q ON q.id = r.id_question";
             PreparedStatement statment = conn.prepareStatement(sql);
             rs = statment.executeQuery();
-            int cont =0;
             while (rs.next()) {                
                 String data = rs.getString(3);
                 data_split = data.split(",");
                 lstQuestions.add(new Questions(rs.getString(1),rs.getString(2), data_split));
             }
+            
        } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }

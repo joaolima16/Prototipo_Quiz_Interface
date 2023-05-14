@@ -8,6 +8,9 @@ import TimerGame.TimerGame;
 import DAO.UserDAO;
 import javax.swing.JOptionPane;
 import Model.User;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 /**
  *
  * @author João Vitor
@@ -99,7 +102,12 @@ public class UserGame extends javax.swing.JFrame {
         boolean userExists = conn.InsertUser(txbUser.getText());
         
         if(userExists == false) {
-              QuestionsForm formQuestion = new QuestionsForm(txbUser.getText());
+              QuestionsForm formQuestion = null;
+            try {
+                formQuestion = new QuestionsForm(txbUser.getText());
+            } catch (SQLException ex) {
+                Logger.getLogger(UserGame.class.getName()).log(Level.SEVERE, null, ex);
+            }
            
               formQuestion.setVisible(true);
               UserGame.this.dispose();

@@ -33,15 +33,7 @@ public final class Questions  {
 	  public String[] getResponse() {
 		 return response; 
 	  }
-	  public String verifyResponse() {
-			  if(!correctResponse.equalsIgnoreCase(getResponse())) {
-                              return "incorreta";
-                          }
-			  else {
-                              return "correta";
-                          }	  
-		
-	  }
+
 	  
 	  
 }

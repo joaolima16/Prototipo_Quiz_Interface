@@ -29,7 +29,7 @@ public final class User {
     }
 
     public void setPoints(int points) {
-        this.points = points + 10;
+        this.points = points;
     }
 
     public String getUsername() {
