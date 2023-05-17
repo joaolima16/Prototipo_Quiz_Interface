@@ -53,12 +53,10 @@ public final class Questions {
     }
 
     public String[] getResponse() {
-       System.out.println(responses[0]);
        return responses;
     }
 
     public boolean verifyResponse(String response, String correctResponse) {
-        System.out.println(response);
         return correctResponse.equalsIgnoreCase(response);
     }
 
