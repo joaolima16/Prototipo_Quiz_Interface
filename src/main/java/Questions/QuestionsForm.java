@@ -70,36 +70,41 @@ public final class QuestionsForm extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel1 = new javax.swing.JPanel();
         JlabelQuestion = new javax.swing.JLabel();
         BtnResponse1 = new javax.swing.JButton();
         BtnResponse2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         BtnResponse3 = new javax.swing.JButton();
-        jPanel1 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
 
-        JlabelQuestion.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
+        jPanel1.setToolTipText("Formulário de questões");
+        jPanel1.setName("Formulário de questões"); // NOI18N
+
+        JlabelQuestion.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         JlabelQuestion.setText("Questão 1 - Qual a fruta correta?");
 
-        BtnResponse1.setFont(new java.awt.Font("Comic Sans MS", 1, 20)); // NOI18N
+        BtnResponse1.setFont(new java.awt.Font("SansSerif", 0, 20)); // NOI18N
         BtnResponse1.setText("Maça");
+        BtnResponse1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         BtnResponse1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BtnResponse1ActionPerformed(evt);
             }
         });
 
-        BtnResponse2.setFont(new java.awt.Font("Comic Sans MS", 1, 20)); // NOI18N
+        BtnResponse2.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         BtnResponse2.setText("Banana");
+        BtnResponse2.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         BtnResponse2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BtnResponse2ActionPerformed(evt);
             }
         });
 
-        jButton3.setFont(new java.awt.Font("Comic Sans MS", 1, 14)); // NOI18N
+        jButton3.setFont(new java.awt.Font("SansSerif", 0, 15)); // NOI18N
         jButton3.setText("Próxima Questão");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -107,8 +112,9 @@ public final class QuestionsForm extends javax.swing.JFrame {
             }
         });
 
-        BtnResponse3.setFont(new java.awt.Font("Comic Sans MS", 1, 20)); // NOI18N
+        BtnResponse3.setFont(new java.awt.Font("SansSerif", 0, 20)); // NOI18N
         BtnResponse3.setText("Pera");
+        BtnResponse3.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         BtnResponse3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BtnResponse3ActionPerformed(evt);
@@ -119,11 +125,32 @@ public final class QuestionsForm extends javax.swing.JFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 432, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(84, 84, 84)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(BtnResponse3, javax.swing.GroupLayout.PREFERRED_SIZE, 267, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(BtnResponse2, javax.swing.GroupLayout.PREFERRED_SIZE, 267, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(BtnResponse1, javax.swing.GroupLayout.PREFERRED_SIZE, 267, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(JlabelQuestion)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(46, 46, 46)
+                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(105, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 4, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(39, 39, 39)
+                .addComponent(JlabelQuestion)
+                .addGap(18, 18, 18)
+                .addComponent(BtnResponse1)
+                .addGap(39, 39, 39)
+                .addComponent(BtnResponse2)
+                .addGap(34, 34, 34)
+                .addComponent(BtnResponse3)
+                .addGap(18, 18, 18)
+                .addComponent(jButton3)
+                .addContainerGap(61, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -131,39 +158,12 @@ public final class QuestionsForm extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(BtnResponse3, javax.swing.GroupLayout.PREFERRED_SIZE, 267, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(BtnResponse2, javax.swing.GroupLayout.PREFERRED_SIZE, 267, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(JlabelQuestion)
-                            .addComponent(BtnResponse1, javax.swing.GroupLayout.PREFERRED_SIZE, 267, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(84, 84, 84))))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(120, 120, 120)
-                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 12, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(18, 18, 18)
-                .addComponent(JlabelQuestion)
-                .addGap(31, 31, 31)
-                .addComponent(BtnResponse1)
-                .addGap(36, 36, 36)
-                .addComponent(BtnResponse2)
-                .addGap(37, 37, 37)
-                .addComponent(BtnResponse3)
-                .addGap(18, 18, 18)
-                .addComponent(jButton3)
-                .addGap(49, 49, 49))
+            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();

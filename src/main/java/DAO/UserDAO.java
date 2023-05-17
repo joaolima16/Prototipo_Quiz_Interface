@@ -41,7 +41,6 @@ public class UserDAO {
             statment.setString(1, user);
             ResultSet rs = statment.executeQuery();
             if (rs.next()) {
-                System.out.println("Usuário já existe");
                 statment.closeOnCompletion();
                 conn.close();
                 return true;
@@ -66,17 +65,16 @@ public class UserDAO {
             stmtSelect.setString(1, user);
             ResultSet rs = stmtSelect.executeQuery();
             User userGame = new User();
-
+                
             while (rs.next()) {
-                userGame.setId(rs.getInt(1));;
+                userGame.setId(rs.getInt(1));
                 userGame.setUsername(rs.getString(2));
                 userGame.setPoints(rs.getInt(3));
 
             }
-            stmtUpdate.setInt(1, userGame.getPoints());
+            stmtUpdate.setInt(1, userGame.getPoints() + 10);
             stmtUpdate.setString(2, userGame.getUsername());
             stmtUpdate.executeUpdate();
-
         } catch (SQLException ex) {
             System.out.println("Ocorreu um erro na aplicação: " + ex.getMessage());
         }
@@ -100,16 +98,15 @@ public class UserDAO {
     public User GetPoints(String user) {
         User userGame = new User();
         try (Connection conn = DriverManager.getConnection("jdbc:sqlite:quiz.db")) {
-           
             String sql = "SELECT name, points FROM game WHERE name =?";
             PreparedStatement stmt = conn.prepareStatement(sql);
             stmt.setString(1, user);
             ResultSet rs = stmt.executeQuery();
             while (rs.next()) {
-                System.out.println(rs.getInt(1));
+                System.out.println(rs.getInt(2));
 
                 userGame.setUsername(user);
-                userGame.setPoints(rs.getInt(1));
+                userGame.setPoints(rs.getInt(2));
             }
 
         } catch (SQLException ex) {

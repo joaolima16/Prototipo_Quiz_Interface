@@ -7,24 +7,41 @@ import mainForms.MenuForm;
  *
  * @author João e Bruno
  */
-public class FinalForm extends javax.swing.JFrame {
+public final class FinalForm extends javax.swing.JFrame {
 
-    /**
-     * Creates new form FinalForm
-     * @param user
-     */
+   private String user;
+   private int points;
+   
+   public String getUser() {
+        return user;
+    }
+
+    public void setUser(String user) {
+        this.user = user;
+    }
+
+    public int getPoints() {
+        return points;
+    }
+
+    public void setPoints(int points) {
+        this.points = points;
+    }
+ 
+   
     public FinalForm(String user) {
         UserDAO userDao = new UserDAO();     
         User userGame = userDao.GetPoints(user);
-        System.out.println(user);
+        setUser(userGame.getUsername());
+        System.out.println(userGame.getPoints());
+        setPoints(userGame.getPoints());
+      
         initComponents();
         
     }
     
-    public void FinalResponse(){
-            
-            
-           // txtCongratulations.setText("Parábens usuário: " + User.getUsername() +" Você fez: " + User.getPoints() + " Pontos");
+    public void FinalResponse(String user, int points){
+            txtCongratulations.setText("Parábens Jogador: " + user +" Você fez: " + points + " Pontos");
         }
     
     @SuppressWarnings("unchecked")
@@ -47,7 +64,7 @@ public class FinalForm extends javax.swing.JFrame {
             }
         });
 
-        txtCongratulations.setFont(new java.awt.Font("Comic Sans MS", 1, 16)); // NOI18N
+        txtCongratulations.setFont(new java.awt.Font("SansSerif", 0, 20)); // NOI18N
         txtCongratulations.setText("jLabel1");
 
         jBtnExit.setFont(new java.awt.Font("Comic Sans MS", 1, 18)); // NOI18N
@@ -71,26 +88,26 @@ public class FinalForm extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(29, 29, 29)
+                .addGap(110, 110, 110)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jBtnExit, javax.swing.GroupLayout.PREFERRED_SIZE, 299, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jBtnNewGame, javax.swing.GroupLayout.PREFERRED_SIZE, 299, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(142, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
                 .addComponent(txtCongratulations, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(57, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jBtnNewGame, javax.swing.GroupLayout.PREFERRED_SIZE, 281, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jBtnExit, javax.swing.GroupLayout.PREFERRED_SIZE, 281, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(62, 62, 62))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(23, 23, 23)
-                .addComponent(txtCongratulations, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(32, 32, 32)
+                .addGap(20, 20, 20)
+                .addComponent(txtCongratulations, javax.swing.GroupLayout.DEFAULT_SIZE, 38, Short.MAX_VALUE)
+                .addGap(30, 30, 30)
                 .addComponent(jBtnNewGame, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
+                .addGap(47, 47, 47)
                 .addComponent(jBtnExit, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(68, 68, 68))
+                .addGap(76, 76, 76))
         );
 
         pack();
@@ -102,7 +119,7 @@ public class FinalForm extends javax.swing.JFrame {
 
     private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
         // TODO add your handling code here:
-        FinalResponse();
+       FinalResponse(getUser(),getPoints());
     }//GEN-LAST:event_formWindowActivated
 
     private void jBtnNewGameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnNewGameActionPerformed
@@ -147,7 +164,7 @@ public class FinalForm extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new FinalForm().setVisible(true);
+                new FinalForm("Teste").setVisible(true);
             }
         });
     }

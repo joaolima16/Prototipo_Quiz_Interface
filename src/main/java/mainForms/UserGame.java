@@ -112,7 +112,7 @@ public class UserGame extends javax.swing.JFrame {
               formQuestion.setVisible(true);
               UserGame.this.dispose();
               
-              timer.start();
+             
       }
       else{
               JOptionPane.showMessageDialog(null, "Usuário já existe, por favor insira outro "); 
