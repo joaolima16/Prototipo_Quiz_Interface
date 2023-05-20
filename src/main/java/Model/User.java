@@ -8,42 +8,36 @@ package Model;
  *
  * @author João Vitor
  */
-public class User {
-    private static String username;
-    private static int Id;
-    private static int points;
+public final class User {
+    private String username;
+    private int Id;
+    private int points;
     
-    public User(String username, int id, int points ){
-    setUsername(username);
-    setId(id);
-    setPoints(points);
-    
-    }
-    public static int getId() {
+    public  int getId() {
         return Id;
     }
 
-    public static void setId(int Id) {
-        User.Id = Id;
+    public void setId(int Id) {
+        this.Id = Id;
     }
-    public static void setUsername(String username) {
-        User.username = username;
+    public void setUsername(String username) {
+         this.username = username;
     }
 
-    public static int getPoints() {
+    public int getPoints() {
         return points;
     }
 
-    public static void setPoints(int points) {
-        User.points = User.points + 10;
+    public void setPoints(int points) {
+        this.points = points;
     }
 
-    public static String getUsername() {
+    public String getUsername() {
         return username;
     }
     @Override 
     public String toString(){
-    return "Usuário" + User.getUsername() + "pontos:" + User.getPoints();
+    return "Usuário" + getUsername() + "pontos:" + getPoints();
     }
 
 }

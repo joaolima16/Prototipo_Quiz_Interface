@@ -1,13 +1,10 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package DAO;
 
+import Model.User;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import Model.User;
 import java.sql.Connection;
 import java.sql.DriverManager;
 /**
@@ -70,7 +67,7 @@ public class GameDAO {
     }
    public void updatePoints(String user) {
         try(Connection conn = DriverManager.getConnection("jdbc:sqlite:quiz.db")) {
-            
+          User userGame = new User();
           String sql = "SELECT * FROM game WHERE name=?";
           String sqlUpdate = "UPDATE game SET points =? WHERE name = ?";
           PreparedStatement stmtSelect = conn.prepareStatement(sql);
@@ -79,13 +76,13 @@ public class GameDAO {
           ResultSet rs = stmtSelect.executeQuery();
           
           while(rs.next()){
-                User.setId(rs.getInt(1));
-                User.setUsername(rs.getString(2));
-                User.setPoints(rs.getInt(3));
+                userGame.setId(rs.getInt(1));
+                userGame.setUsername(rs.getString(2));
+               userGame.setPoints(rs.getInt(3));
           }
           
-          stmtUpdate.setInt(1, User.getPoints());
-          stmtUpdate.setString(2, User.getUsername());
+          stmtUpdate.setInt(1, userGame.getPoints());
+          stmtUpdate.setString(2, userGame.getUsername());
           stmtUpdate.executeUpdate();
           
         }
