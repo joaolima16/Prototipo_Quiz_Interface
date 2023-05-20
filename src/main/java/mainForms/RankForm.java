@@ -94,6 +94,7 @@ public final class RankForm extends javax.swing.JFrame {
     public void CentralizarForm() {
         this.setLocationRelativeTo(null);
         GenerateData();
+        setResizable(false);
     }
 
     private void BtnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnBackActionPerformed

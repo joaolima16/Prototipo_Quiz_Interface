@@ -65,6 +65,8 @@ public final class QuestionsForm extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         JLabelQuestion.setHorizontalAlignment(SwingConstants.CENTER);
         JLabelNumberQ.setHorizontalAlignment(SwingConstants.CENTER);
+        setResizable(false);
+
     }
 
     @SuppressWarnings("unchecked")

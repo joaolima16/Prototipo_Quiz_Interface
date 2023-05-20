@@ -110,8 +110,9 @@ public class MenuForm extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
     public final void ComplementComponents() {
         this.setLocationRelativeTo(null);
-         var color = new Color(0x2A2C2E);
+        var color = new Color(0x2A2C2E);
         getContentPane().setBackground(color);
+        setResizable(false);
     }
     private void jBtnOptionFourActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnOptionFourActionPerformed
 

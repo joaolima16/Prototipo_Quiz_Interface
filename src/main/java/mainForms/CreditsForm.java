@@ -9,6 +9,7 @@ public final class CreditsForm extends javax.swing.JFrame {
     }
  public void CentralizarForm() {
         this.setLocationRelativeTo(null);
+        setResizable(false);
  }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
