@@ -61,6 +61,11 @@ public final class FinalForm extends javax.swing.JFrame {
         jRadioButton1.setText("jRadioButton1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowActivated(java.awt.event.WindowEvent evt) {
+                formWindowActivated(evt);
+            }
+        });
 
         txtCongratulations.setFont(new java.awt.Font("SansSerif", 1, 20)); // NOI18N
         txtCongratulations.setForeground(new java.awt.Color(255, 255, 255));
@@ -129,6 +134,11 @@ public final class FinalForm extends javax.swing.JFrame {
 
         System.exit(0);
     }//GEN-LAST:event_jBtnExitActionPerformed
+
+    private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
+        // TODO add your handling code here:
+        FinalResponse(getUser(),getPoints());
+    }//GEN-LAST:event_formWindowActivated
 
     public static void main(String args[]) {
 
