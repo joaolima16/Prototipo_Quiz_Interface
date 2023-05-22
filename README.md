@@ -1,7 +1,7 @@
 
 # Interface_Quiz_Application
 
-Interface funcional de um quiz de Conhecimentos Gerais.
+Interface funcional de um quiz de Conhecimentos Gerais desenvolvido para a disciplina Projeto Integrador(PI).
 
 
 
@@ -23,4 +23,5 @@ Interface funcional de um quiz de Conhecimentos Gerais.
 ## Autores
 
 - [@JoaoLima](https://github.com/joaolima16)
+- Kaio De Oliveira Venâncio
 
